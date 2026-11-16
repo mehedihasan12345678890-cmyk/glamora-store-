@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GLAMORA | Women's Accessories</title>
+<style>
+:root{--pink:#e85b9b;--deep:#9d285e;--pale:#fff0f6;--ink:#352532}
+*{box-sizing:border-box}body{margin:0;font-family:Arial,"Noto Sans Bengali",sans-serif;color:var(--ink);background:#fffafd}
+header{background:#fff;position:sticky;top:0;z-index:5;box-shadow:0 2px 14px #7a31501a}
+.nav{max-width:1100px;margin:auto;padding:15px 20px;display:flex;align-items:center;justify-content:space-between;gap:12px}
+.logo{font-size:25px;font-weight:900;letter-spacing:3px;color:var(--deep)}.tag{font-size:11px;color:#9b7185;letter-spacing:1px}
+.cart{border:0;background:var(--pale);color:var(--deep);padding:10px 14px;border-radius:22px;font-weight:bold}
+.hero{max-width:1100px;margin:22px auto;padding:45px 24px;border-radius:24px;background:linear-gradient(120deg,#ffe2ee,#fff7fb 60%,#f9d4e5);display:flex;align-items:center;justify-content:space-between;gap:20px}
+.hero h1{font-size:clamp(30px,5vw,52px);margin:8px 0;color:#7f214e}.hero p{color:#79576a;line-height:1.7}.eyebrow{color:var(--pink);font-weight:bold;letter-spacing:2px}
+.hero-art{font-size:100px;filter:drop-shadow(0 12px 12px #b94b7b35)}
+.btn{display:inline-block;border:0;background:var(--pink);color:white;padding:12px 20px;border-radius:25px;text-decoration:none;font-weight:bold;cursor:pointer}
+main{max-width:1100px;margin:35px auto;padding:0 20px}.section-head{display:flex;align-items:end;justify-content:space-between;gap:10px;flex-wrap:wrap}
+h2{color:#702348}.muted{color:#987e8c;font-size:14px}
+.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:17px;margin-top:20px}
+.product{background:white;border:1px solid #f5dce8;border-radius:18px;overflow:hidden;box-shadow:0 5px 18px #9b31500c}
+.pic{height:155px;background:linear-gradient(145deg,#fff0f6,#fbd8e8);display:grid;place-items:center;font-size:62px}
+.info{padding:14px}.info h3{margin:0 0 7px;font-size:16px}.price{font-weight:bold;color:var(--deep);margin:8px 0 12px}
+.info button{width:100%;padding:10px;border:0;border-radius:20px;background:#fff0f6;color:#a52f66;font-weight:bold;cursor:pointer}
+.about{margin:45px 0;padding:26px;border-radius:20px;background:#fff0f6;text-align:center;line-height:1.8}
+footer{text-align:center;padding:28px 15px;background:#54223d;color:#ffeaf3;font-size:13px}
+#cartCount{display:inline-block;min-width:20px}
+@media(max-width:760px){.grid{grid-template-columns:repeat(2,1fr)}.hero{margin:14px 12px;padding:28px 20px}.hero-art{font-size:70px}}
+@media(max-width:380px){.grid{gap:10px}.pic{height:125px}}
+</style>
+</head>
+<body>
+<header><div class="nav"><div><div class="logo">GLAMORA</div><div class="tag">YOUR BEAUTY, YOUR STYLE</div></div><button class="cart" onclick="showCart()">কার্ট · <span id="cartCount">0</span></button></div></header>
+<section class="hero"><div><div class="eyebrow">NEW COLLECTION</div><h1>ছোট্ট সাজে,<br>বড় মুগ্ধতা</h1><p>তোমার প্রতিদিনের সাজের জন্য সুন্দর সব ফ্যাশন এক্সেসরিজ।</p><a class="btn" href="#products">শপিং শুরু করো</a></div><div class="hero-art">💎🎀</div></section>
+<main>
+<div class="section-head"><div><h2 id="products">আমাদের কালেকশন</h2><div class="muted">নমুনা পণ্য — নিজের পণ্যের ছবি ও দাম পরে বসানো যাবে</div></div></div>
+<div class="grid" id="productGrid"></div>
+<section class="about"><h2>GLAMORA সম্পর্কে</h2>তোমার পছন্দের ফ্যাশন এক্সেসরিজ এক জায়গায়।<br><b>Your Beauty, Your Style.</b><p class="muted">অর্ডার ও যোগাযোগের নম্বর এখানে পরে যোগ করা হবে।</p></section>
+</main>
+<footer>© 2026 GLAMORA · Women's Fashion & Accessories</footer>
+<script>
+const products=[
+{name:"স্টাইলিশ কানের দুল",price:180,icon:"💎"},
+{name:"ফ্যাশন চুড়ি",price:250,icon:"📿"},
+{name:"পার্ল নেকলেস",price:320,icon:"🤍"},
+{name:"হেয়ার ক্লিপ সেট",price:120,icon:"🎀"},
+{name:"মিনিমাল আংটি",price:150,icon:"💍"},
+{name:"ব্রেসলেট",price:200,icon:"✨"},
+{name:"স্ক্রাঞ্চি সেট",price:100,icon:"🌸"},
+{name:"মিনি পার্স",price:350,icon:"👛"}
+];
+let cart=[];
+const grid=document.getElementById("productGrid");
+products.forEach((p,i)=>{const el=document.createElement("article");el.className="product";el.innerHTML=`<div class="pic">${p.icon}</div><div class="info"><h3>${p.name}</h3><div class="price">৳${p.price}</div><button onclick="addToCart(${i})">কার্টে যোগ করো</button></div>`;grid.appendChild(el)});
+function addToCart(i){cart.push(products[i]);document.getElementById("cartCount").textContent=cart.length;alert(products[i].name+" কার্টে যোগ হয়েছে।")}
+function showCart(){if(!cart.length){alert("তোমার কার্ট এখন খালি।");return}let total=cart.reduce((s,p)=>s+p.price,0);let list=cart.map(p=>p.name+" — ৳"+p.price).join("\\n");alert("তোমার কার্ট:\\n"+list+"\\n\\nমোট: ৳"+total+"\\n\\nঅর্ডার নেওয়ার WhatsApp নম্বর যোগ হলে এখান থেকে অর্ডার সম্পন্ন করা যাবে।")}
+</script>
+</body>
+</html>
